@@ -34,7 +34,7 @@ public class UserPrinciple implements UserDetails {
     public String getPassword() {
 //        return "{noop}" + user.getPassword(); // Prefix with {noop} if password is plaintext
         return user.getPassword();
-//        return "{bcrypt}" + user.getPassword();
+//        return "{bcrypt}" + user.getPassword(); //no need of this if encoder is properly configured
     }
 
     /**
