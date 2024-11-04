@@ -3,9 +3,11 @@ package com.kk.spring_sec_demo.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -38,7 +40,7 @@ public class SecurityConfig {
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setUserDetailsService(userDetailsService);
-//        provider.setPasswordEncoder(NoOpPasswordEncoder.getInstance());// to save plain text password
+        //provider.setPasswordEncoder(NoOpPasswordEncoder.getInstance());// to save plain text password in database
         provider.setPasswordEncoder(new BCryptPasswordEncoder(12));
         return provider;
     }
@@ -58,11 +60,18 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(customizer -> customizer.disable())
-                .authorizeHttpRequests(authorizeHttpRequestsCustomizer -> authorizeHttpRequestsCustomizer.anyRequest().authenticated())
-                .httpBasic(Customizer.withDefaults())
-//                .formLogin(Customizer.withDefaults())
+                .authorizeHttpRequests(request -> request
+                        .requestMatchers("/register", "/login").permitAll()// allow registration only from /register without authentication
+                        .anyRequest().authenticated())
+                .httpBasic(Customizer.withDefaults())// HTTP Basic authentication
+                //.formLogin(Customizer.withDefaults()) // form based login
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));//session stateless so every request will have a different session
         return http.build();
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
+        return configuration.getAuthenticationManager();
     }
 
 //    @Bean
