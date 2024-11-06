@@ -69,7 +69,7 @@ public class SecurityConfig {
                 //.httpBasic(Customizer.withDefaults())// HTTP Basic authentication
                 //.formLogin(Customizer.withDefaults()) // form based login
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))//session stateless so every request will have a different session
-                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);// add jwt filter before UsernamePasswordAuthenticationFilter
         return http.build();
     }
 

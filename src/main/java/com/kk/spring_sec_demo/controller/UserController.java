@@ -51,6 +51,7 @@ public class UserController {
     @PostMapping(value = "/login")
     public String login(@RequestBody User user) {
         try {
+            // Before generating the token, we need to authenticate the user
             Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
             if (authentication.isAuthenticated()) {
                 return jwtService.generateToken(user);

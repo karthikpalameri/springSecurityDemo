@@ -35,7 +35,7 @@ public class JwtService {
                 .setClaims(claims)
                 .setSubject(user.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 3))
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 3)) // 3 mins from now
                 .signWith(getKey(), io.jsonwebtoken.SignatureAlgorithm.HS256).compact();
 
     }
@@ -49,8 +49,8 @@ public class JwtService {
      * @return the secret key
      */
     private Key getKey() {
-        byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
-        return Keys.hmacShaKeyFor(keyBytes);
+        byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);//decode secret key from base64 string to byte array
+        return Keys.hmacShaKeyFor(keyBytes);// create secret key
     }
 
     /**

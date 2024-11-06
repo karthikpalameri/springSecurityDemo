@@ -18,7 +18,8 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 
 @Component
-public class JwtFilter extends OncePerRequestFilter {
+public class JwtFilter extends OncePerRequestFilter // This filter will be called once per request
+{
     @Autowired
     private JwtService jwtService;
 
@@ -31,7 +32,7 @@ public class JwtFilter extends OncePerRequestFilter {
         String token = null;
         String username = null;
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
-            token = authHeader.substring(7);
+            token = authHeader.substring(7);// Get the token from the header and remove the "Bearer " prefix
             username = jwtService.extractUserName(token);
         }
 
@@ -58,7 +59,7 @@ public class JwtFilter extends OncePerRequestFilter {
             }
         }
 
-        filterChain.doFilter(request, response);// Call the next filter
+        filterChain.doFilter(request, response);// Call the next filter / pass the request to the next filter.
     }
 
 }

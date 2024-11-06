@@ -2,13 +2,14 @@
 
 # Introduction to Spring Security 
 
-# AuthenticationManager in Spring Security
 ### Helpful Docs and Links
 
 - [Spring Security DAO Authentication Provider Documentation](https://docs.spring.io/spring-security/reference/servlet/authentication/passwords/dao-authentication-provider.html)
 - [Implementing JWT Authentication using Spring Security - Detailed Walkthrough](https://medium.com/geekculture/implementing-json-web-token-jwt-authentication-using-spring-security-detailed-walkthrough-1ac480a8d970)
 - [JWT Spring Security GIT repo Example Repository](https://github.dev/udhayakumarth/jwt-spring-security-example)
+- [TLDR Udemy Telusko Video Reference JWT summary](https://www.udemy.com/course/spring-5-with-spring-boot-2/learn/lecture/43034378#notes)
 
+# AuthenticationManager in Spring Security
 ## Role of `AuthenticationManager`
 
 The `AuthenticationManager` is a central component in Spring Security that handles the authentication process. Its main roles are:
