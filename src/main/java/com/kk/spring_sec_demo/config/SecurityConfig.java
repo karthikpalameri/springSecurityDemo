@@ -61,7 +61,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(customizer -> customizer.disable())
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers("/register", "/login").permitAll()// allow registration only from /register without authentication
+                        .requestMatchers("/register", "/login").permitAll()// allow registration only from /register and /login without authentication
                         .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())// HTTP Basic authentication
                 //.formLogin(Customizer.withDefaults()) // form based login
