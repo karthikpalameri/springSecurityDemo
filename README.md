@@ -7,6 +7,7 @@
 
 - [Spring Security DAO Authentication Provider Documentation](https://docs.spring.io/spring-security/reference/servlet/authentication/passwords/dao-authentication-provider.html)
 - [Implementing JWT Authentication using Spring Security - Detailed Walkthrough](https://medium.com/geekculture/implementing-json-web-token-jwt-authentication-using-spring-security-detailed-walkthrough-1ac480a8d970)
+- [JWT Spring Security GIT repo Example Repository](https://github.dev/udhayakumarth/jwt-spring-security-example)
 
 ## Role of `AuthenticationManager`
 
